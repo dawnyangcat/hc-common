@@ -41,13 +41,6 @@ public class UploadExcelListener<T> extends AnalysisEventListener<T> {
 		this.obj = obj;
 	}
 
-	/**
-	 * 这个每一条数据解析都会来调用
-	 *
-	 * @param data    one row value. Is is same as
-	 *                {@link AnalysisContext#readRowHolder()}
-	 * @param context
-	 */
 	@Override
 	public void invoke(T data, AnalysisContext context) {
 		LOGGER.info("解析到一条数据:{}", JSON.toJSONString(data));
@@ -60,11 +53,6 @@ public class UploadExcelListener<T> extends AnalysisEventListener<T> {
 		}
 	}
 
-	/**
-	 * 所有数据解析完成了 都会来调用
-	 *
-	 * @param context
-	 */
 	@Override
 	public void doAfterAllAnalysed(AnalysisContext context) {
 		// 这里也要保存数据，确保最后遗留的数据也存储到数据库
@@ -72,9 +60,6 @@ public class UploadExcelListener<T> extends AnalysisEventListener<T> {
 		LOGGER.info("所有数据解析完成！");
 	}
 
-	/**
-	 * 加上存储数据库
-	 */
 	private void saveData() {
 		LOGGER.info("{}条数据，开始存储数据库！", list.size());
 		/*

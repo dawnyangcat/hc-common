@@ -23,11 +23,6 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * 
- * @Author  张代浩
- *
- */
 public class oConvertUtils {
 	public static boolean isEmpty(Object object) {
 		if (object == null) {
@@ -41,7 +36,7 @@ public class oConvertUtils {
 		}
 		return (false);
 	}
-	
+
 	public static boolean isNotEmpty(Object object) {
 		if (object != null && !object.equals("") && !object.equals("null")) {
 			return (true);
@@ -165,7 +160,7 @@ public class oConvertUtils {
 			return (defval);
 		}
 	}
-	
+
 	public static Integer getInt(Object object) {
 		if (isEmpty(object)) {
 			return null;
@@ -201,15 +196,10 @@ public class oConvertUtils {
 		return (getString(s, ""));
 	}
 
-	/**
-	 * 转义成Unicode编码
-	 * @param s
-	 * @return
-	 */
 	/*public static String escapeJava(Object s) {
 		return StringEscapeUtils.escapeJava(getString(s));
 	}*/
-	
+
 	public static String getString(Object object) {
 		if (isEmpty(object)) {
 			return "";
@@ -248,9 +238,6 @@ public class oConvertUtils {
 		return test.longValue();
 	}
 
-	/**
-	 * 获取本机IP
-	 */
 	public static String getIp() {
 		String ip = null;
 		try {
@@ -263,22 +250,14 @@ public class oConvertUtils {
 		return ip;
 	}
 
-	/**
-	 * 判断一个类是否为基本数据类型。
-	 * 
-	 * @param clazz
-	 *            要判断的类。
-	 * @return true 表示为基本数据类型。
-	 */
 	private static boolean isBaseDataType(Class clazz) throws Exception {
-		return (clazz.equals(String.class) || clazz.equals(Integer.class) || clazz.equals(Byte.class) || clazz.equals(Long.class) || clazz.equals(Double.class) || clazz.equals(Float.class) || clazz.equals(Character.class) || clazz.equals(Short.class) || clazz.equals(BigDecimal.class) || clazz.equals(BigInteger.class) || clazz.equals(Boolean.class) || clazz.equals(Date.class) || clazz.isPrimitive());
+		return (clazz.equals(String.class) || clazz.equals(Integer.class) || clazz.equals(Byte.class)
+				|| clazz.equals(Long.class) || clazz.equals(Double.class) || clazz.equals(Float.class)
+				|| clazz.equals(Character.class) || clazz.equals(Short.class) || clazz.equals(BigDecimal.class)
+				|| clazz.equals(BigInteger.class) || clazz.equals(Boolean.class) || clazz.equals(Date.class)
+				|| clazz.isPrimitive());
 	}
 
-	/**
-	 * @param request
-	 *            IP
-	 * @return IP Address
-	 */
 	public static String getIpAddrByRequest(HttpServletRequest request) {
 		String ip = request.getHeader("x-forwarded-for");
 		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
@@ -293,10 +272,6 @@ public class oConvertUtils {
 		return ip;
 	}
 
-	/**
-	 * @return 本机IP
-	 * @throws SocketException
-	 */
 	public static String getRealIp() throws SocketException {
 		String localip = null;// 本地IP，如果没有配置外网IP则返回它
 		String netip = null;// 外网IP
@@ -313,7 +288,8 @@ public class oConvertUtils {
 					netip = ip.getHostAddress();
 					finded = true;
 					break;
-				} else if (ip.isSiteLocalAddress() && !ip.isLoopbackAddress() && ip.getHostAddress().indexOf(":") == -1) {// 内网IP
+				} else if (ip.isSiteLocalAddress() && !ip.isLoopbackAddress()
+						&& ip.getHostAddress().indexOf(":") == -1) {// 内网IP
 					localip = ip.getHostAddress();
 				}
 			}
@@ -326,12 +302,7 @@ public class oConvertUtils {
 		}
 	}
 
-	/**
-	 * java去除字符串中的空格、回车、换行符、制表符
-	 * 
-	 * @param str
-	 * @return
-	 */
+	// java去除字符串中的空格、回车、换行符、制表符
 	public static String replaceBlank(String str) {
 		String dest = "";
 		if (str != null) {
@@ -343,13 +314,7 @@ public class oConvertUtils {
 
 	}
 
-	/**
-	 * 判断元素是否在数组内
-	 * 
-	 * @param substring
-	 * @param source
-	 * @return
-	 */
+	// 判断元素是否在数组内
 	public static boolean isIn(String substring, String[] source) {
 		if (source == null || source.length == 0) {
 			return false;
@@ -363,19 +328,10 @@ public class oConvertUtils {
 		return false;
 	}
 
-	/**
-	 * 获取Map对象
-	 */
 	public static Map<Object, Object> getHashMap() {
 		return new HashMap<Object, Object>();
 	}
 
-	/**
-	 * SET转换MAP
-	 * 
-	 * @param str
-	 * @return
-	 */
 	public static Map<Object, Object> SetToMap(Set<Object> setobj) {
 		Map<Object, Object> map = getHashMap();
 		for (Iterator iterator = setobj.iterator(); iterator.hasNext();) {
@@ -398,7 +354,8 @@ public class oConvertUtils {
 		long bEnd = getIpNum("172.31.255.255");
 		long cBegin = getIpNum("192.168.0.0");
 		long cEnd = getIpNum("192.168.255.255");
-		isInnerIp = isInner(ipNum, aBegin, aEnd) || isInner(ipNum, bBegin, bEnd) || isInner(ipNum, cBegin, cEnd) || ipAddress.equals("127.0.0.1");
+		isInnerIp = isInner(ipNum, aBegin, aEnd) || isInner(ipNum, bBegin, bEnd) || isInner(ipNum, cBegin, cEnd)
+				|| ipAddress.equals("127.0.0.1");
 		return isInnerIp;
 	}
 
@@ -416,16 +373,15 @@ public class oConvertUtils {
 	private static boolean isInner(long userIp, long begin, long end) {
 		return (userIp >= begin) && (userIp <= end);
 	}
-	
-	/**
-	 * 将下划线大写方式命名的字符串转换为驼峰式。
-	 * 如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。</br>
-	 * 例如：hello_world->helloWorld
-	 * 
-	 * @param name
-	 *            转换前的下划线大写方式命名的字符串
-	 * @return 转换后的驼峰式命名的字符串
-	 */
+
+//	  将下划线大写方式命名的字符串转换为驼峰式。
+//	  如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。</br>
+//	 例如：hello_world->helloWorld
+//	  
+//	  @param name
+//	             转换前的下划线大写方式命名的字符串
+//	  @return 转换后的驼峰式命名的字符串
+
 	public static String camelName(String name) {
 		StringBuilder result = new StringBuilder();
 		// 快速检查
@@ -434,10 +390,13 @@ public class oConvertUtils {
 			return "";
 		} else if (!name.contains("_")) {
 			// 不含下划线，仅将首字母小写
-			//update-begin--Author:zhoujf  Date:20180503 for：TASK #2500 【代码生成器】代码生成器开发一通用模板生成功能
-			//update-begin--Author:zhoujf  Date:20180503 for：TASK #2500 【代码生成器】代码生成器开发一通用模板生成功能
+			// update-begin--Author:zhoujf Date:20180503 for：TASK #2500
+			// 【代码生成器】代码生成器开发一通用模板生成功能
+			// update-begin--Author:zhoujf Date:20180503 for：TASK #2500
+			// 【代码生成器】代码生成器开发一通用模板生成功能
 			return name.substring(0, 1).toLowerCase() + name.substring(1).toLowerCase();
-			//update-end--Author:zhoujf  Date:20180503 for：TASK #2500 【代码生成器】代码生成器开发一通用模板生成功能
+			// update-end--Author:zhoujf Date:20180503 for：TASK #2500
+			// 【代码生成器】代码生成器开发一通用模板生成功能
 		}
 		// 用下划线将原始字符串分割
 		String camels[] = name.split("_");
@@ -458,18 +417,17 @@ public class oConvertUtils {
 		}
 		return result.toString();
 	}
-	
-	/**
-	 * 将下划线大写方式命名的字符串转换为驼峰式。
-	 * 如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。</br>
-	 * 例如：hello_world,test_id->helloWorld,testId
-	 * 
-	 * @param name
-	 *            转换前的下划线大写方式命名的字符串
-	 * @return 转换后的驼峰式命名的字符串
-	 */
+
+//	  将下划线大写方式命名的字符串转换为驼峰式。
+//	  如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。</br>
+//	  例如：hello_world,test_id->helloWorld,testId
+//	  
+//	  @param name
+//	             转换前的下划线大写方式命名的字符串
+//	  @return 转换后的驼峰式命名的字符串
+
 	public static String camelNames(String names) {
-		if(names==null||names.equals("")){
+		if (names == null || names.equals("")) {
 			return null;
 		}
 		StringBuffer sf = new StringBuffer();
@@ -481,17 +439,18 @@ public class oConvertUtils {
 		String result = sf.toString();
 		return result.substring(0, result.length() - 1);
 	}
-	
-	//update-begin--Author:zhoujf  Date:20180503 for：TASK #2500 【代码生成器】代码生成器开发一通用模板生成功能
-	/**
-	 * 将下划线大写方式命名的字符串转换为驼峰式。(首字母写)
-	 * 如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。</br>
-	 * 例如：hello_world->HelloWorld
-	 * 
-	 * @param name
-	 *            转换前的下划线大写方式命名的字符串
-	 * @return 转换后的驼峰式命名的字符串
-	 */
+
+	// update-begin--Author:zhoujf Date:20180503 for：TASK #2500
+	// 【代码生成器】代码生成器开发一通用模板生成功能
+
+//	  将下划线大写方式命名的字符串转换为驼峰式。(首字母写)
+//	  如果转换前的下划线大写方式命名的字符串为空，则返回空字符串。</br>
+//	  例如：hello_world->HelloWorld
+//	  
+//	  @param name
+//	             转换前的下划线大写方式命名的字符串
+//	  @return 转换后的驼峰式命名的字符串
+
 	public static String camelNameCapFirst(String name) {
 		StringBuilder result = new StringBuilder();
 		// 快速检查
@@ -515,49 +474,38 @@ public class oConvertUtils {
 		}
 		return result.toString();
 	}
-	//update-end--Author:zhoujf  Date:20180503 for：TASK #2500 【代码生成器】代码生成器开发一通用模板生成功能
-	
-	/**
-	 * 将驼峰命名转化成下划线
-	 * @param para
-	 * @return
-	 */
-	public static String camelToUnderline(String para){
-        if(para.length()<3){
-        	return para.toLowerCase(); 
-        }
-        StringBuilder sb=new StringBuilder(para);
-        int temp=0;//定位
-        //从第三个字符开始 避免命名不规范 
-        for(int i=2;i<para.length();i++){
-            if(Character.isUpperCase(para.charAt(i))){
-                sb.insert(i+temp, "_");
-                temp+=1;
-            }
-        }
-        return sb.toString().toLowerCase(); 
+	// update-end--Author:zhoujf Date:20180503 for：TASK #2500
+	// 【代码生成器】代码生成器开发一通用模板生成功能
+
+	// 将驼峰命名转化成下划线
+	public static String camelToUnderline(String para) {
+		if (para.length() < 3) {
+			return para.toLowerCase();
+		}
+		StringBuilder sb = new StringBuilder(para);
+		int temp = 0;// 定位
+		// 从第三个字符开始 避免命名不规范
+		for (int i = 2; i < para.length(); i++) {
+			if (Character.isUpperCase(para.charAt(i))) {
+				sb.insert(i + temp, "_");
+				temp += 1;
+			}
+		}
+		return sb.toString().toLowerCase();
 	}
 
-	/**
-	 * 随机数
-	 * @param place 定义随机数的位数
-	 */
+	// 定义随机数的位数
 	public static String randomGen(int place) {
 		String base = "qwertyuioplkjhgfdsazxcvbnmQAZWSXEDCRFVTGBYHNUJMIKLOP0123456789";
 		StringBuffer sb = new StringBuffer();
 		Random rd = new Random();
-		for(int i=0;i<place;i++) {
+		for (int i = 0; i < place; i++) {
 			sb.append(base.charAt(rd.nextInt(base.length())));
 		}
 		return sb.toString();
 	}
-	
-	/**
-	 * 获取类的所有属性，包括父类
-	 * 
-	 * @param object
-	 * @return
-	 */
+
+	// 获取类的所有属性，包括父类
 	public static Field[] getAllFields(Object object) {
 		Class<?> clazz = object.getClass();
 		List<Field> fieldList = new ArrayList<>();
@@ -569,22 +517,18 @@ public class oConvertUtils {
 		fieldList.toArray(fields);
 		return fields;
 	}
-	
-	/**
-	  * 将map的key全部转成小写
-	 * @param list
-	 * @return
-	 */
-	public static List<Map<String, Object>> toLowerCasePageList(List<Map<String, Object>> list){
+
+	// 将map的key全部转成小写
+	public static List<Map<String, Object>> toLowerCasePageList(List<Map<String, Object>> list) {
 		List<Map<String, Object>> select = new ArrayList<>();
 		for (Map<String, Object> row : list) {
-			 Map<String, Object> resultMap = new HashMap<>();
-			 Set<String> keySet = row.keySet(); 
-			 for (String key : keySet) { 
-				 String newKey = key.toLowerCase(); 
-				 resultMap.put(newKey, row.get(key)); 
-			 }
-			 select.add(resultMap);
+			Map<String, Object> resultMap = new HashMap<>();
+			Set<String> keySet = row.keySet();
+			for (String key : keySet) {
+				String newKey = key.toLowerCase();
+				resultMap.put(newKey, row.get(key));
+			}
+			select.add(resultMap);
 		}
 		return select;
 	}

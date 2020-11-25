@@ -13,12 +13,6 @@ import java.io.PrintStream;
 
 public class FileUtil {
 
-	/**
-	 * 覆盖文件
-	 * @param string
-	 * @param path
-	 * @return
-	 */
 	public static boolean coverFile(String string, String path) {
 		PrintStream stream = null;
 		try {
@@ -31,12 +25,6 @@ public class FileUtil {
 		return false;
 	}
 
-	/**
-	 * 追加文件
-	 * @param string
-	 * @param path
-	 * @return
-	 */
 	public boolean addToFile(String string, String path) {
 		// 文件的续写
 		FileWriter fw = null;

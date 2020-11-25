@@ -12,20 +12,12 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  */
 public class PinyinUtil {
 
-	/**
-	 * 测试main方法
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		System.out.println(ToFirstChar("汉字转换为拼音").toUpperCase()); // 转为首字母大写
 		System.out.println(ToPinyin("汉字转换为拼音aaa"));
 	}
 
-	/**
-	 * 获取字符串拼音的第一个字母
-	 * @param chinese
-	 * @return
-	 */
+	// 获取字符串拼音的第一个字母
 	public static String ToFirstChar(String chinese) {
 		String pinyinStr = "";
 		char[] newChar = chinese.toCharArray(); // 转为单个字符
@@ -46,11 +38,7 @@ public class PinyinUtil {
 		return pinyinStr;
 	}
 
-	/**
-	 * 汉字转为拼音
-	 * @param chinese
-	 * @return
-	 */
+	// 汉字转为拼音
 	public static String ToPinyin(String chinese) {
 		String pinyinStr = "";
 		char[] newChar = chinese.toCharArray();

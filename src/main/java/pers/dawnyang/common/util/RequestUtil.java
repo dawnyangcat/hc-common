@@ -15,11 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RequestUtil {
 
-	/**
-	 * 获取请求中的json
-	 * @param req
-	 * @return
-	 */
 	public static String getRequestBody(HttpServletRequest req) {
 		try {
 			BufferedReader reader = req.getReader();
