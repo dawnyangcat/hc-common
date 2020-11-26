@@ -31,12 +31,7 @@ public class UploadExcelListener<T> extends AnalysisEventListener<T> {
 
 	private Object obj;
 
-	/**
-	 * 如果使用了spring,请使用这个构造方法。每次创建Listener的时候需要把spring管理的类传进来
-	 *
-	 * @param uploadDAO
-	 */
-
+//如果使用了spring,请使用这个构造方法。每次创建Listener的时候需要把spring管理的类传进来
 	public UploadExcelListener(Object obj) {
 		this.obj = obj;
 	}
